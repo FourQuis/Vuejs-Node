@@ -1,0 +1,12 @@
+const router = require('express').Router()
+const commentsCtrl = require('../controllers/feedback/commentCtrl')
+const auth = require('../middleware/auth')
+const authAdmin = require('../middleware/authAdmin')
+router.route('/comment/create')
+    .post(auth,commentsCtrl.createComments)
+router.route('/comment/getcomments')
+    .get(commentsCtrl.getallComments)
+router.route('/comment/doreply').post(auth,commentsCtrl.doReply)
+router.route('/comment/like').post(auth,commentsCtrl.likeCommentByID)
+router.route('/comment/dislike').post(auth,commentsCtrl.dislikeCommentByID)
+module.exports = router
